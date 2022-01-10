@@ -1,3 +1,5 @@
+import {getResource} from '../services/services';
+
 function cards() {
     //Menu Card
 
@@ -37,28 +39,12 @@ function cards() {
         }
     }
 
-    const getResource = async (url, data) => { //url i data дані які будуть поститись
-        const res = await fetch(url);
-
-        if (!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`); //викидає помилку catch 
-        }                                                           //так fetch видає тільки при відсутності мережі
-
-        return await res.json(); //повертаємо promis
-    };
-
     getResource(' http://localhost:3000/menu')
         .then(data => {
-            data.forEach(({
-                img,
-                altimg,
-                title,
-                descr,
-                price
-            }) => { //деструктуризація(беремо властивості з обєкта карточки json)
+            data.forEach(({img,altimg,title,descr,price}) => { //деструктуризація(беремо властивості з обєкта карточки json)
                 new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
             });
         });
 }
 
-module.exports = cards;
+export default cards;

@@ -1,7 +1,5 @@
-function timer() {
+function timer(id, deadline) {
     // TIMER
-
-    const deadline = '2022-03-31';
 
     function getTimeRemainig(endtime) {
         const t = Date.parse(endtime) - Date.parse(new Date()), //отримуємо різницю від кінцевого часу до теперішнього
@@ -57,7 +55,7 @@ function timer() {
             }
         }
     }
-    setClock('.timer', deadline); //запускаємо таймер
+    setClock(id, deadline); //запускаємо таймер
 }
 
-module.exports = timer;
+export default timer;
